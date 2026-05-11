@@ -112,8 +112,17 @@ def get_best_word(lm, context_word: str):
     :param context_word:
     :return: The best word to follow context_word according to the probabilities from lm.get_probability
     """
-    raise Exception("IMPLEMENT ME")
+    best_word = None
+    best_prob = -1.0
 
+    for word in lm.get_vocabulary():
+        prob = lm.get_probability(context_word, word)
+
+        if prob > best_prob:
+            best_prob = prob
+            best_word = word
+
+    return best_word
 
 def get_best_sentence(lm, context_word: str):
     """
